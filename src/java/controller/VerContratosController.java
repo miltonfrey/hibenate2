@@ -146,6 +146,7 @@ public class VerContratosController implements Serializable{
             
             c.setEquivalenciaSet(null);
             try{
+            equivalenciaService.modificaContrato(c);
             equivalenciaService.eliminaContrato(c);
             }catch(ContratoNotFoundException ex){
                 
