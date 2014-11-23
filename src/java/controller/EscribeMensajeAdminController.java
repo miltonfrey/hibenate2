@@ -95,7 +95,7 @@ public class EscribeMensajeAdminController implements Serializable{
        
         mensajeService.enviarMensaje(m);
         
-        beanUtilidades.creaMensaje("mensaje enviado correctamente", FacesMessage.SEVERITY_INFO);
+        beanUtilidades.creaMensaje("envío correctamente", FacesMessage.SEVERITY_INFO);
         texto="";
         tema="";
         
