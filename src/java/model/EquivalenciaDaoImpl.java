@@ -109,8 +109,8 @@ public class EquivalenciaDaoImpl implements EquivalenciaDao{
        
        
        
-       return entityManager.createQuery("select e from Equivalencia e where e.visible='si' and e.idequivalencia in(select g.idequivalencia from GrupoAsignaturaB g where g.idequivalencia in" +
-               "(select m.idGrupoAsignaturaB.idequivalencia from MiembroGrupoAsignaturaB m where m.asignatura.asignaturaPK.nombreUniversidad=:universidad))").setParameter("universidad", universidad).getResultList();
+       return entityManager.createQuery("select e from Equivalencia e where e.visible='si' and e.idequivalencia in" +
+               "(select m.idEquivalencia from MiembroGrupoAsignaturaB m where m.asignatura.asignaturaPK.nombreUniversidad=:universidad)").setParameter("universidad", universidad).getResultList();
    }
    
    @Override

@@ -95,9 +95,9 @@
                         
                            </p:column>
                     
-                           <p:column sortBy="#{universidad.pais.nombre}" headerText="pais">
+                         <p:column sortBy="#{universidad.web}" headerText="web">
                     
-                              <h:outputText value="#{universidad.pais.nombre}"/>
+                             <h:outputLink value="#{universidad.web}" target="_blank" rendered="#{not empty universidad.web}"><h:outputText value="link"/></h:outputLink>
                          
                            </p:column>
                     

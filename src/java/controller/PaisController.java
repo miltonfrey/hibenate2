@@ -97,7 +97,7 @@ public class PaisController implements Serializable{
           universidadService.deletePais(pais);
           
           
-      }catch(PaisException|RuntimeException ex){
+      }catch(RuntimeException ex){
           
           beanUtilidades.creaMensaje("se ha producido un error eliminando el país", FacesMessage.SEVERITY_ERROR);
           return null;

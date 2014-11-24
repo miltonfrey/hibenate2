@@ -2,6 +2,7 @@
 package controller;
 
 import exceptions.ContratoNotFoundException;
+import exceptions.EquivalenciaException;
 import exceptions.MovilidadNotFoundException;
 import exceptions.UniversidadException;
 import java.io.Serializable;
@@ -189,15 +190,11 @@ public class EquivalenciasPublicasController implements Serializable{
         try{
         c=equivalenciaService.verContratoPorEquivalencia(selectedEquivalencia);
          m=equivalenciaService.buscarMovilidadPorContrato(c);
-        }catch(ContratoNotFoundException|MovilidadNotFoundException|RuntimeException ex){
+        }catch(EquivalenciaException|ContratoNotFoundException|MovilidadNotFoundException|RuntimeException ex){
            beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
             return "equivalenciasPublicasAdmin.xhtml";
         }
       
-        
-       
-        
-        
         
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("contrato", c);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("movilidad", m);

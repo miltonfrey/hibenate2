@@ -426,8 +426,6 @@ public class MisEquivalenciasController implements Serializable{
         Contrato c=new Contrato();
         c.setIdMovilidad(selectedMovilidad);
         c.setFecha(Calendar.getInstance().getTime());
-        //Set<Equivalencia>setE=new HashSet<Equivalencia>(listaAuxEquivalencias); no hace falta ya que se van a añadir luego
-        //c.setEquivalencias(setE);
         c.setEstado("pendiente");
         
         try{

@@ -40,7 +40,7 @@ public interface EquivalenciaService {
    public void crearContratoDesdeAceptado(ArrayList<Equivalencia>listaAuxEquivalencias,Contrato c, Contrato cNuevo)throws ContratoNotFoundException,EquivalenciaException;
    public void compruebaFechaCrearContrato(Contrato c,Date aux)throws FechaIncorrectaException;
    public ArrayList<EquivalenciaRevisada> compararEquivalencias(ArrayList<Equivalencia> listaAuxEquivalencias,ArrayList<Equivalencia> listaAuxEquivalenciasComparado);
-    public Contrato verContratoPorEquivalencia(Equivalencia e)throws ContratoNotFoundException;
+    public Contrato verContratoPorEquivalencia(Equivalencia e)throws ContratoNotFoundException,EquivalenciaException;
     public Movilidad buscarMovilidadPorContrato(Contrato c)throws ContratoNotFoundException,MovilidadNotFoundException;
     
 }

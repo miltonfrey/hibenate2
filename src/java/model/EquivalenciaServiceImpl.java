@@ -170,24 +170,24 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
     @Override  
     public List<Equivalencia> equivalenciasPublicas(String Universidad){
         
-        return equivalenciaDao.equivalenciasPublicas(Universidad);
+         List<Equivalencia>listaEquivalencias=equivalenciaDao.equivalenciasPublicas(Universidad);
         
-       /* for(Equivalencia e:listaEquivalencias){
-            Hibernate.initialize(e.getGrupoAsignaturaA().getMiembroGrupoAsignaturaAs());
-            i=e.getGrupoAsignaturaA().getMiembroGrupoAsignaturaAs().iterator();
+        for(Equivalencia e:listaEquivalencias){
+            Hibernate.initialize(e.getMiembroGrupoAsignaturaASet());
+           Iterator i=e.getMiembroGrupoAsignaturaASet().iterator();
             while(i.hasNext()){
                 MiembroGrupoAsignaturaA m=(MiembroGrupoAsignaturaA)i.next();
                 Hibernate.initialize(m.getAsignatura());
             }
             
-             Hibernate.initialize(e.getGrupoAsignaturaB().getMiembroGrupoAsignaturaBs());
-            i=e.getGrupoAsignaturaB().getMiembroGrupoAsignaturaBs().iterator();
+             Hibernate.initialize(e.getMiembroGrupoAsignaturaBSet());
+            i=e.getMiembroGrupoAsignaturaBSet().iterator();
             while(i.hasNext()){
                 MiembroGrupoAsignaturaB m=(MiembroGrupoAsignaturaB)i.next();
                 Hibernate.initialize(m.getAsignatura());
             }
-        }*/
-        
+        }
+        return listaEquivalencias;
     }
     
     @Override
@@ -228,17 +228,7 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
         Set s1=new HashSet<Equivalencia>();
         for(Equivalencia e:listaAuxEquivalencias){
           e.setIdequivalencia(null);
-          Iterator i=e.getMiembroGrupoAsignaturaASet().iterator();
-          while(i.hasNext()){
-              
-              MiembroGrupoAsignaturaA ma=(MiembroGrupoAsignaturaA)i.next();
-              
-              
-          }
             s1.add(e);
-            
-            
-            
             crearEquivalencia(e);
            
              
@@ -444,11 +434,12 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
      }
      
      @Override
-     public Contrato verContratoPorEquivalencia(Equivalencia e) throws ContratoNotFoundException{
+     public Contrato verContratoPorEquivalencia(Equivalencia e) throws ContratoNotFoundException,EquivalenciaException{
          
          Contrato c=null;
+         e=find(e.getIdequivalencia());
+         Hibernate.initialize(e.getContratoSet());
          
-         //Hibernate.initialize(e.getContratos());
          Iterator i=e.getContratoSet().iterator();
          while(i.hasNext()){
              if(c==null){
@@ -467,7 +458,8 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
      }
     if(c==null)
         throw new ContratoNotFoundException();
-         
+     //Hibernate.initialize(c.getIdMovilidad());
+     //Hibernate.initialize(c.getIdMovilidad().getLoginUsuario());
      return c;
      
 }
@@ -479,6 +471,7 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
         if(c.getIdMovilidad()==null)
             throw new MovilidadNotFoundException();
         //Hibernate.initialize(c.getMovilidad().getUniversidad());
+        Hibernate.initialize(c.getIdMovilidad());
         return c.getIdMovilidad();
      }
              
