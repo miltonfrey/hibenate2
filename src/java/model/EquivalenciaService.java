@@ -19,7 +19,7 @@ import utils.EquivalenciaRevisada;
 @Local
 public interface EquivalenciaService {
     public void crearEquivalencia(Equivalencia e);
-    public void eliminarEquivalencia(Equivalencia e) throws EquivalenciaException;
+    public void eliminarEquivalencia(Equivalencia e) ;
     public void actualizarEquivalencia(Equivalencia e);
     public List<Equivalencia> listarEquivalencias();
     public Equivalencia find(Integer id) throws EquivalenciaException;
@@ -30,7 +30,7 @@ public interface EquivalenciaService {
     public void creaContrato(Contrato c);
     public void modificaContrato(Contrato c) throws ContratoNotFoundException;
     public List<Contrato> listaContratos(Movilidad m);
-    public void eliminaContrato(Contrato c)throws ContratoNotFoundException;  
+    public void eliminaContrato(Contrato c);  
     public Contrato findContrato(Integer id) throws ContratoNotFoundException;
    public List<Equivalencia> equivalenciasPublicas(String universidad);
    public List<Object[]> listaObject();

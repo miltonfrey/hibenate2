@@ -39,7 +39,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
         
         
         
-        entityManager.remove(u);
+        entityManager.remove(entityManager.merge(u));
         
         
     }

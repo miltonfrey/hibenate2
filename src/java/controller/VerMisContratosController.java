@@ -140,15 +140,12 @@ public class VerMisContratosController implements Serializable{
         
         ArrayList<Equivalencia> listaCopia=null;
         
-           
-          
-           
            try{
               
            selectedContrato=equivalenciaService.findContrato(selectedContrato.getIdContrato());
             listaCopia=new ArrayList<>(selectedContrato.getEquivalenciaSet());
              selectedContrato.setEquivalenciaSet(null);
-           equivalenciaService.modificaContrato(selectedContrato);
+           //equivalenciaService.modificaContrato(selectedContrato);
            equivalenciaService.eliminaContrato(selectedContrato);
            }catch(ContratoNotFoundException ex){
                
@@ -157,7 +154,7 @@ public class VerMisContratosController implements Serializable{
               
                 try{
                 equivalenciaService.eliminarEquivalencia(e);
-                }catch(EquivalenciaException|RuntimeException ex){
+                }catch(RuntimeException ex){
                     
                 }
             }

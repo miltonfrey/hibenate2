@@ -32,7 +32,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     public void delete(Usuario u) throws UsuarioNotFoundException{
         
         
-        u=find(u.getLogin());
+        
         
         usuarioDao.delete(u);
        

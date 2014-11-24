@@ -146,23 +146,23 @@ public class VerContratosController implements Serializable{
             
             c.setEquivalenciaSet(null);
             try{
-            equivalenciaService.modificaContrato(c);
+            //equivalenciaService.modificaContrato(c);
             equivalenciaService.eliminaContrato(c);
-            }catch(ContratoNotFoundException ex){
+            }catch(RuntimeException ex){
                 
             }
-          
-           }
-        for(Equivalencia e:listaCopia){
+            
+             for(Equivalencia e:listaCopia){
             
             try{
             equivalenciaService.eliminarEquivalencia(e);
-            }catch(EquivalenciaException|RuntimeException ex){
+            }catch(RuntimeException ex){
                 
             }
         }
-        
-        
+          
+           }
+       
         beanUtilidades.creaMensaje("contrato eliminado correctamente", FacesMessage.SEVERITY_INFO);
         setListaContratos(equivalenciaService.listaContratos(selectedMovilidad));
         selectedContratos=null;

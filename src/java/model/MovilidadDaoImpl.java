@@ -45,7 +45,7 @@ public class MovilidadDaoImpl implements MovilidadDao{
     @Override
     public void eliminarMovilidad(Movilidad m){
         
-       entityManager.remove(m);
+       entityManager.remove(entityManager.merge(m));
         
     }
     @Override

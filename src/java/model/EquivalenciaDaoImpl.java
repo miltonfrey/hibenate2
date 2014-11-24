@@ -52,7 +52,7 @@ public class EquivalenciaDaoImpl implements EquivalenciaDao{
     @Override
     public void eliminarEquivalencia(Equivalencia e){
         
-        entityManager.remove(e);
+        entityManager.remove(entityManager.merge(e));
         
     }
     
@@ -90,7 +90,7 @@ public class EquivalenciaDaoImpl implements EquivalenciaDao{
     @Override
     public void eliminaContrato(Contrato c){
         
-       entityManager.remove(c);
+       entityManager.remove(entityManager.merge(c));
     }
      /*@Override
    public List<Equivalencia> listarEquivalenciasPorContrato(Integer id){

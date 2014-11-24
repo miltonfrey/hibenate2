@@ -53,10 +53,10 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
     }
     
     @Override
-    public void eliminarEquivalencia(Equivalencia e)throws EquivalenciaException{
+    public void eliminarEquivalencia(Equivalencia e){
         
         
-        e=find(e.getIdequivalencia());
+        
         equivalenciaDao.eliminarEquivalencia(e);
         
     }
@@ -88,7 +88,7 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
     @Override
     public void modificaContrato(Contrato c)throws ContratoNotFoundException{
         
-        //c=findContrato(c.getIdContrato());
+        
         equivalenciaDao.modificaContrato(c);
     }
     @Override
@@ -97,9 +97,9 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
         return equivalenciaDao.listaContratos(m);
     }
     @Override
-    public void eliminaContrato(Contrato c)throws ContratoNotFoundException{
+    public void eliminaContrato(Contrato c){
         
-        c=findContrato(c.getIdContrato()); 
+       
         equivalenciaDao.eliminaContrato(c);
        
     }

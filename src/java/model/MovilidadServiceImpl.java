@@ -88,7 +88,7 @@ public class MovilidadServiceImpl implements MovilidadService{
     }
     @Override
     public void eliminarMovilidad(Movilidad m){
-        m=findMovilidad(m.getCodMovilidad());
+        
         movilidadDao.eliminarMovilidad(m);
     }
     

@@ -486,7 +486,7 @@ public class MisEquivalenciasController implements Serializable{
         for(Equivalencia e:listaCopia){
             try{
                 equivalenciaService.eliminarEquivalencia(e);
-            }catch(EquivalenciaException|RuntimeException ex){
+            }catch(RuntimeException ex){
                 
             }
         }

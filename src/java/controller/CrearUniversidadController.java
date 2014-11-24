@@ -259,7 +259,7 @@ public class CrearUniversidadController implements Serializable{
                
                 try{
                     universidadService.delete(u);
-                }catch(UniversidadException|RuntimeException ex){
+                }catch(RuntimeException ex){
                     listaUniversidades=universidadService.listarPorPais(paisStr);
                    beanUtilidades.creaMensaje("Error eliminando", FacesMessage.SEVERITY_INFO); 
                    

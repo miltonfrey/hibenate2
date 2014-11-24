@@ -63,14 +63,14 @@ public class UniversidadDaoImpl implements UniversidadDao{
         
     @Override
     public void deletePais(Pais p){
-        entityManager.remove(p);
+        entityManager.remove(entityManager.merge(p));
     }
     
     
     @Override
     public void delete(Universidad u){
         
-        entityManager.remove(u);
+        entityManager.remove(entityManager.merge(u));
     }
     @Override
     public List<Universidad> listarUniversidades(){
@@ -128,7 +128,7 @@ public class UniversidadDaoImpl implements UniversidadDao{
      @Override
      public void eliminarCursoAcademico(Cursoacademico c){
          
-         entityManager.remove(c);
+         entityManager.remove(entityManager.merge(c));
          
      }
      @Override

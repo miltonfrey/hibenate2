@@ -57,9 +57,9 @@ public class UniversidadServiceImpl implements UniversidadService{
         
     }
     @Override
-    public void deletePais(Pais p)throws PaisException{
+    public void deletePais(Pais p){
         
-        p=findPais(p.getNombre());
+        
         
         universidadDao.deletePais(p);
     }
@@ -73,9 +73,9 @@ public class UniversidadServiceImpl implements UniversidadService{
     }
     
     @Override
-    public void delete(Universidad u)throws UniversidadException{
+    public void delete(Universidad u){
         
-        u=findUniversidad(u.getNombre());
+        
         
         universidadDao.delete(u);
         
