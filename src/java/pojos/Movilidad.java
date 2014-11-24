@@ -67,13 +67,13 @@ public class Movilidad implements Serializable {
     @OneToMany(mappedBy = "idMovilidad", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Contrato> contratoSet;
     @JoinColumn(name = "loginUsuario", referencedColumnName = "login")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario loginUsuario;
     @JoinColumn(name = "nombreUniversidad", referencedColumnName = "nombre")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Universidad nombreUniversidad;
     @JoinColumn(name = "cursoAcademico", referencedColumnName = "cursoAcademico")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cursoacademico cursoAcademico;
 
     public Movilidad() {

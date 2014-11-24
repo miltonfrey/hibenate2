@@ -262,7 +262,7 @@ public class CrearUniversidadController implements Serializable{
                 }catch(RuntimeException ex){
                     listaUniversidades=universidadService.listarPorPais(paisStr);
                    beanUtilidades.creaMensaje("Error eliminando", FacesMessage.SEVERITY_INFO); 
-                   
+                  
                     return "crearUniversidad.xhtml";
                 }    
             }

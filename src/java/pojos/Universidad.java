@@ -58,7 +58,7 @@ public class Universidad implements Serializable {
     @Column(name = "codUniversidad")
     private String codUniversidad;
     @JoinColumn(name = "pais", referencedColumnName = "nombre")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Pais pais;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "universidad", fetch = FetchType.LAZY)
     private Set<Asignatura> asignaturaSet;

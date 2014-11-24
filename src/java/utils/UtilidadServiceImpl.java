@@ -32,8 +32,8 @@ public class UtilidadServiceImpl implements UtilidadService {
     }
     @Override
     public void eliminaEstado(Estado e){
-        e=findEstado(e);
-       entityManager.remove(e);
+        
+       entityManager.remove(entityManager.merge(e));
                 
     }
     
@@ -54,7 +54,7 @@ public class UtilidadServiceImpl implements UtilidadService {
     
     @Override
     public void eliminaEstadoMovilidad(EstadoMovilidad e){
-        entityManager.remove(e);
+        entityManager.remove(entityManager.merge(e));
     }
     
     @Override
@@ -71,7 +71,7 @@ public class UtilidadServiceImpl implements UtilidadService {
     }
     @Override
     public void eliminaCursoAcademico(Cursoacademico c){
-        entityManager.remove(c);
+        entityManager.remove(entityManager.merge(c));
     }
     
     public Estado findEstado(Estado e){
