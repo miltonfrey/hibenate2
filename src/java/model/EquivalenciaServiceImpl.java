@@ -458,13 +458,13 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
      }
     if(c==null)
         throw new ContratoNotFoundException();
-     //Hibernate.initialize(c.getIdMovilidad());
-     //Hibernate.initialize(c.getIdMovilidad().getLoginUsuario());
+     Hibernate.initialize(c.getIdMovilidad());
+     Hibernate.initialize(c.getIdMovilidad().getLoginUsuario());
      return c;
      
 }
      
-     @Override
+     @Override //no hace falta
      public Movilidad buscarMovilidadPorContrato(Contrato c)throws ContratoNotFoundException,MovilidadNotFoundException{
         c=findContrato(c.getIdContrato());
         //Hibernate.initialize(c.getMovilidad());

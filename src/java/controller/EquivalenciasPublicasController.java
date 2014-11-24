@@ -189,8 +189,9 @@ public class EquivalenciasPublicasController implements Serializable{
         Contrato c;
         try{
         c=equivalenciaService.verContratoPorEquivalencia(selectedEquivalencia);
-         m=equivalenciaService.buscarMovilidadPorContrato(c);
-        }catch(EquivalenciaException|ContratoNotFoundException|MovilidadNotFoundException|RuntimeException ex){
+         //m=equivalenciaService.buscarMovilidadPorContrato(c);
+        m=c.getIdMovilidad();
+        }catch(EquivalenciaException|ContratoNotFoundException|RuntimeException ex){
            beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
             return "equivalenciasPublicasAdmin.xhtml";
         }
