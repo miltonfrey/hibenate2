@@ -73,13 +73,6 @@ public class CrearAsignaturaController implements Serializable{
     private ArrayList<Asignatura>filteredAsignaturas;
     
     
-    @PostConstruct
-    public void init(){
-        
-        setListaPaises(universidadService.listaPaises());
-        
-    }
-    
     public String getPaisStr() {
         return paisStr;
     }

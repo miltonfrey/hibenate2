@@ -117,8 +117,8 @@
                                
                                <f:facet name="footer">
                                 <p:commandButton id="b1" onclick= "if (! confirm('¿seguro que quieres borrar?'))return false"
-                                                 value="eliminar" action="#{crearUniversidadController.eliminaUniversidadLista}"  icon="edit_icon" update=":formTabla :formUniversidad:msgs :formDetalles"
-                                                 oncomplete="PF('universidadTable').unselectAllRows();"
+                                                 value="eliminar" action="#{crearUniversidadController.eliminaUniversidadLista}" process=":formTabla"  icon="edit_icon" update=":formTabla :formUniversidad:msgs :formDetalles"
+                                                 oncomplete="PF('universidadTable').filter();"
                                                  />
                                
                                </f:facet>

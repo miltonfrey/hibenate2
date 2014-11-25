@@ -1,7 +1,7 @@
 package controller;
 
 import exceptions.PaisException;
-import exceptions.UniversidadException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -252,15 +252,16 @@ public class CrearUniversidadController implements Serializable{
         
        
         
-        if(selectedUniversidades.isEmpty()==false){
-            
+        if(selectedUniversidades.isEmpty()==true){
+            return null;
+        }   
             
             for(Universidad u:selectedUniversidades){
                
                 try{
                     universidadService.delete(u);
                 }catch(RuntimeException ex){
-                    listaUniversidades=universidadService.listarPorPais(paisStr);
+                   
                    beanUtilidades.creaMensaje("Error eliminando", FacesMessage.SEVERITY_INFO); 
                    
                     return "crearUniversidad.xhtml";
@@ -269,8 +270,9 @@ public class CrearUniversidadController implements Serializable{
             beanUtilidades.creaMensaje("se han eliminado las universidades correctamente", FacesMessage.SEVERITY_INFO);
             listaUniversidades=universidadService.listarPorPais(paisStr);
             checkDetalles=false;
-        }
-        return null;
+            return null;
+        
+        
         
     }
     
