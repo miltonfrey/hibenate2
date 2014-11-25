@@ -187,7 +187,7 @@ public class VerMisContratosController implements Serializable{
         }
     }
         
-        for(Contrato c:listaContratos){
+      /*  for(Contrato c:listaContratos){
             
             if(c.getEstado().equalsIgnoreCase("pendiente")||c.getEstado().equalsIgnoreCase("rechazado")){
             verAceptado=false;
@@ -196,7 +196,7 @@ public class VerMisContratosController implements Serializable{
             }
             
         }
-        
+        */
         
     }
     
