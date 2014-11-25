@@ -70,7 +70,7 @@ public class UniversidadDaoImpl implements UniversidadDao{
     
     @Override
     public void delete(Universidad u){
-        
+         u=entityManager.getReference(Universidad.class, u.getNombre());
         entityManager.remove(entityManager.merge(u));
     }
     @Override

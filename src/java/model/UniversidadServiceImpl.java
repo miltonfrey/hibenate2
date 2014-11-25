@@ -7,6 +7,7 @@ package model;
 
 import exceptions.PaisException;
 import exceptions.UniversidadException;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +20,7 @@ import pojos.Universidad;
 
 
 @Stateless
-public class UniversidadServiceImpl implements UniversidadService{
+public class UniversidadServiceImpl implements UniversidadService,Serializable{
     
     @Inject
     private UniversidadDao universidadDao;
@@ -75,7 +76,7 @@ public class UniversidadServiceImpl implements UniversidadService{
     @Override
     public void delete(Universidad u){
         
-        
+       
         
         universidadDao.delete(u);
         

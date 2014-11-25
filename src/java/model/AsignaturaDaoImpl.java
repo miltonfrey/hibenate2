@@ -54,7 +54,7 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
     
     @Override
     public void eliminaAsignatura(Asignatura a){
-        
+       
         entityManager.remove(entityManager.merge(a));
         
     }
