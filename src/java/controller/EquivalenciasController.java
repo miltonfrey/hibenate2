@@ -2,6 +2,7 @@
 package controller;
 
 import exceptions.ContratoNotFoundException;
+import exceptions.EquivalenciaException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -101,7 +102,7 @@ public class EquivalenciasController implements Serializable{
            context.getSessionMap().remove("movilidad");
            try{
            selectedContrato=equivalenciaService.findContrato(selectedContrato.getIdContrato());
-           }catch(ContratoNotFoundException ex){
+           }catch(ContratoNotFoundException|RuntimeException ex){
                try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -273,8 +274,9 @@ public class EquivalenciasController implements Serializable{
             e.getEquivalencia().setVisible("si");
            
                 try{
+                    e.setEquivalencia(equivalenciaService.find(e.getEquivalencia().getIdequivalencia()));
                 equivalenciaService.actualizarEquivalencia(e.getEquivalencia());
-            }catch(RuntimeException ex){
+            }catch(EquivalenciaException|RuntimeException ex){
                 try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -304,8 +306,9 @@ public class EquivalenciasController implements Serializable{
             e.setVisible("si");
            
                  try{
+                     e=equivalenciaService.find(e.getIdequivalencia());
                 equivalenciaService.actualizarEquivalencia(e);
-            }catch(RuntimeException ex){
+            }catch(EquivalenciaException|RuntimeException ex){
                  try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -331,8 +334,9 @@ public class EquivalenciasController implements Serializable{
             e.getEquivalencia().setVisible("no");
             
                  try{
+                     e.setEquivalencia(equivalenciaService.find(e.getEquivalencia().getIdequivalencia()));
                 equivalenciaService.actualizarEquivalencia(e.getEquivalencia());
-            }catch(RuntimeException ex){
+            }catch(EquivalenciaException|RuntimeException ex){
                  try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -357,8 +361,9 @@ public class EquivalenciasController implements Serializable{
             e.setVisible("no");
             
             try{
+                e=equivalenciaService.find(e.getIdequivalencia());
                 equivalenciaService.actualizarEquivalencia(e);
-            }catch(RuntimeException ex){
+            }catch(EquivalenciaException|RuntimeException ex){
                  try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -380,9 +385,13 @@ public class EquivalenciasController implements Serializable{
         if(apruebaOrechaza.equals(selectedContrato.getEstado()))
             return null;
         
+        
+        
+        
         selectedContrato.setEstado(apruebaOrechaza);
         
             try{
+                selectedContrato=equivalenciaService.findContrato(selectedContrato.getIdContrato());
             equivalenciaService.modificaContrato(selectedContrato);
             }catch(RuntimeException|ContratoNotFoundException ex){
                 try{

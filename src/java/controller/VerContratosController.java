@@ -68,6 +68,7 @@ public class VerContratosController implements Serializable{
        if(context.getSessionMap().containsKey("movilidad")==true){
            selectedMovilidad=(Movilidad)context.getSessionMap().get("movilidad");
            context.getSessionMap().remove("Movilidad");
+           
            selectedMovilidad=movilidadService.findMovilidad(selectedMovilidad.getCodMovilidad());
            setListaContratos(equivalenciaService.listaContratos(selectedMovilidad));
            

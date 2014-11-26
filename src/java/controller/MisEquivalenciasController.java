@@ -129,7 +129,7 @@ public class MisEquivalenciasController implements Serializable{
         context.getSessionMap().remove("contrato");
         try{
         c=equivalenciaService.findContrato(selectedContrato.getIdContrato());
-        }catch(ContratoNotFoundException ex){
+        }catch(ContratoNotFoundException|RuntimeException ex){
              try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
             }catch(IOException ex2){
@@ -471,7 +471,7 @@ public class MisEquivalenciasController implements Serializable{
         ArrayList<Equivalencia>listaCopia=null;
          try{
         listaCopia=equivalenciaService.editarContrato(listaAuxEquivalencias, c);
-        }catch(ContratoNotFoundException ex){
+        }catch(ContratoNotFoundException|RuntimeException ex){
          
              try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
@@ -528,7 +528,7 @@ public class MisEquivalenciasController implements Serializable{
         
          try{
          equivalenciaService.crearContratoDesdeAceptado(listaAuxEquivalencias, c, cNuevo);
-        }catch(Exception ex){
+        }catch(ContratoNotFoundException|EquivalenciaException|RuntimeException ex){
          
              try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");

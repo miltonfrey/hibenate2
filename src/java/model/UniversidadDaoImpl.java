@@ -70,8 +70,9 @@ public class UniversidadDaoImpl implements UniversidadDao{
     
     @Override
     public void delete(Universidad u){
-         u=entityManager.getReference(Universidad.class, u.getNombre());
+         u=entityManager.find(Universidad.class, u.getNombre());
         entityManager.remove(entityManager.merge(u));
+        
     }
     @Override
     public List<Universidad> listarUniversidades(){
@@ -89,7 +90,7 @@ public class UniversidadDaoImpl implements UniversidadDao{
     
     @Override
     public void actualizar(Universidad u){
-        
+        u=entityManager.find(Universidad.class, u.getNombre());
         entityManager.merge(u);
     }
     

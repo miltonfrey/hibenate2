@@ -32,7 +32,7 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
     }
     @Override
     public void actualizarAsignatura(Asignatura a){
-        
+        a=entityManager.find(Asignatura.class, a.getAsignaturaPK());
       entityManager.merge(a);    
     }
     
