@@ -59,9 +59,9 @@
                 
                
                 <p:outputLabel value="pagina web"/>
-                <p:inputText value="#{crearUniversidadController.web}"/>
-                
-                
+                <p:inputText id="text1" value="#{crearUniversidadController.web}"/>
+                <p:watermark for="text1" value="http://"/>
+                <h:outputLabel/>
                  <p:outputLabel  value="información adicional"/>
                  <p:inputTextarea value="#{crearUniversidadController.info}"/>
                 
@@ -98,7 +98,7 @@
                          <p:column sortBy="#{universidad.web}" headerText="web">
                     
                              <h:outputLink value="#{universidad.web}" target="_blank" rendered="#{not empty universidad.web}"><h:outputText value="link"/></h:outputLink>
-                         
+                             
                            </p:column>
                     
                            
@@ -136,7 +136,9 @@
                 <p:inputText value="#{crearUniversidadController.selectedUniversidad.codUniversidad}" />
                  
                 <p:outputLabel value="web" />
-                <p:inputText value="#{crearUniversidadController.selectedUniversidad.web}" />
+                <p:inputText id="text2" value="#{crearUniversidadController.selectedUniversidad.web}" />
+                <p:watermark for="text2" value="http://"/>
+                <h:outputLabel/>
                 <p:outputLabel value="info" />
                 <p:inputTextarea value="#{crearUniversidadController.selectedUniversidad.info}" />
                 

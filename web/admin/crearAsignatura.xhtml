@@ -71,8 +71,9 @@
                 
                 
                 <p:outputLabel value="web" />
-                <p:inputText value="#{crearAsignaturaController.webAsignatura}" />
-                
+                <p:inputText id="texto1" value="#{crearAsignaturaController.webAsignatura}" />
+                <p:watermark for="texto1" value="http://"/>
+                <h:outputLabel/>
                 <p:outputLabel value="info" />
                 <p:inputTextarea value="#{crearAsignaturaController.infoAsignatura}" cols="22" />
                 
@@ -180,7 +181,9 @@
                     
                 
                 <p:outputLabel value="web" />
-                <p:inputText value="#{crearAsignaturaController.selectedAsignatura.webAsignatura}" />
+                <p:inputText id="texto2" value="#{crearAsignaturaController.selectedAsignatura.webAsignatura}" />
+                <p:watermark for="texto2" value="http://"/>
+                <h:outputLabel/>
                 <p:outputLabel value="info" />
                 <p:inputTextarea value="#{crearAsignaturaController.selectedAsignatura.infoAsigantura}" cols="22" />
                 

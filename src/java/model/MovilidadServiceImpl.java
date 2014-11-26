@@ -207,7 +207,7 @@ public class MovilidadServiceImpl implements MovilidadService{
     @Override
     public void cambiarMovilidad(Movilidad m,String estado){
         
-        m=findMovilidad(m.getCodMovilidad());
+        //m=findMovilidad(m.getCodMovilidad());
         m.setEstado(estado);
         movilidadDao.cambiarMovilidad(m);
         
