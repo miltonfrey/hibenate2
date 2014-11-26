@@ -1,12 +1,14 @@
 package controller;
 
 import exceptions.PaisException;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -263,8 +265,8 @@ public class CrearUniversidadController implements Serializable{
                     universidadService.delete(u);
                 }catch(RuntimeException ex){
                    
-                   beanUtilidades.creaMensaje("Error eliminando", FacesMessage.SEVERITY_INFO); 
-                   
+                   beanUtilidades.creaMensaje("Error eliminando", FacesMessage.SEVERITY_ERROR); 
+                   paisStr="";
                     return "crearUniversidad.xhtml";
                 }    
             }
@@ -287,8 +289,13 @@ public class CrearUniversidadController implements Serializable{
         universidadService.actualizar(selectedUniversidad);
         listaUniversidades=universidadService.listarPorPais(paisStr);
         }catch(RuntimeException ex){
-            beanUtilidades.creaMensaje("se ha producido un error ", FacesMessage.SEVERITY_ERROR);
-            return "crearUniversidad.xhtml";
+           
+                
+                try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/crearUniversidad.xhtml");
+            }catch(IOException ex2){
+                
+            }
         }
         beanUtilidades.creaMensaje("edición correcta", FacesMessage.SEVERITY_INFO);
         return null;

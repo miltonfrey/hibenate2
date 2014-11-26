@@ -2,12 +2,14 @@
 package controller;
 
 import exceptions.UniversidadException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -319,8 +321,11 @@ public class CrearAsignaturaController implements Serializable{
             asignaturaService.actualizarAsignatura(SelectedAsignatura);
            setListaAsignaturas( asignaturaService.listarAsignaturasPorUniversidad(universidadStr));
         }catch(RuntimeException ex){
-            beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_INFO);
-            return "crearAsignatura.xhtml";
+            try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/crearAsignatura.xhtml");
+        }catch(IOException ex2){
+            
+        }
         }
             checkDetalles=false;
             beanUtilidades.creaMensaje("Edición correcta", FacesMessage.SEVERITY_INFO);
