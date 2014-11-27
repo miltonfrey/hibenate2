@@ -67,7 +67,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
     }
     @Override
     public void actualizar(Usuario u){
-        
+        u=find(u.getLogin());
         entityManager.merge(u);
         
     }

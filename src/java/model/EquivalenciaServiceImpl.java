@@ -86,7 +86,7 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
     }
     
     @Override
-    public void modificaContrato(Contrato c)throws ContratoNotFoundException{
+    public void modificaContrato(Contrato c){
         
         
         equivalenciaDao.modificaContrato(c);
@@ -240,7 +240,7 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
     
     @Override
     public ArrayList<Equivalencia> editarContrato(ArrayList<Equivalencia> listaAuxEquivalencias,Contrato c) throws ContratoNotFoundException{
-        c=findContrato(c.getIdContrato());
+        
         ArrayList<Equivalencia> listaCopia=new ArrayList<Equivalencia>();
                
         

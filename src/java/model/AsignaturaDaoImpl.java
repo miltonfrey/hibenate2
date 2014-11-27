@@ -2,7 +2,6 @@
 package model;
 
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
@@ -10,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import pojos.Asignatura;
+import pojos.AsignaturaPK;
 
 
 @Named(value = "asignaturaDaoImpl")
@@ -32,8 +32,8 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
     }
     @Override
     public void actualizarAsignatura(Asignatura a){
-        a=entityManager.find(Asignatura.class, a.getAsignaturaPK());
-      entityManager.merge(a);    
+      a=find(a.getAsignaturaPK());
+        entityManager.merge(a);
     }
     
     @Override
@@ -63,6 +63,11 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
     public List<Asignatura> listarPorCriterio(){
         
         return(entityManager.createQuery("select a from Asignatura a where a."+"periodo=:nombre").setParameter("nombre", "anual").getResultList());
+    }
+    
+    public Asignatura find(AsignaturaPK id){
+        
+        return(Asignatura)entityManager.createQuery("select a from Asignatura a where a.asignaturaPK=:id").setParameter("id", id).getSingleResult();
     }
     
 }

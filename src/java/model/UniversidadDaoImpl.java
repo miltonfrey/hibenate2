@@ -6,12 +6,12 @@
 package model;
 
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.hibernate.Session;
 import pojos.Cursoacademico;
 import pojos.Pais;
 import pojos.Universidad;
@@ -73,6 +73,7 @@ public class UniversidadDaoImpl implements UniversidadDao{
          u=entityManager.find(Universidad.class, u.getNombre());
         entityManager.remove(entityManager.merge(u));
         
+        
     }
     @Override
     public List<Universidad> listarUniversidades(){
@@ -90,7 +91,9 @@ public class UniversidadDaoImpl implements UniversidadDao{
     
     @Override
     public void actualizar(Universidad u){
-        u=entityManager.find(Universidad.class, u.getNombre());
+        
+        
+        u=findUniversidad(u.getNombre());
         entityManager.merge(u);
     }
     

@@ -2,7 +2,7 @@
 package model;
 
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
+
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
@@ -37,7 +37,7 @@ public class MovilidadDaoImpl implements MovilidadDao{
     }
     @Override
     public void cambiarMovilidad(Movilidad m){
-        
+      m=findMovilidad(m.getCodMovilidad());
       entityManager.merge(m);
         
     }

@@ -28,7 +28,7 @@ public interface EquivalenciaService {
        
     
     public void creaContrato(Contrato c);
-    public void modificaContrato(Contrato c) throws ContratoNotFoundException;
+    public void modificaContrato(Contrato c);
     public List<Contrato> listaContratos(Movilidad m);
     public void eliminaContrato(Contrato c);  
     public Contrato findContrato(Integer id) throws ContratoNotFoundException;
