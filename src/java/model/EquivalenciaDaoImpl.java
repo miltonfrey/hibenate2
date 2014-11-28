@@ -10,7 +10,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.hibernate.Session;
+
 import pojos.Contrato;
 import pojos.Equivalencia;
 
@@ -46,9 +46,7 @@ public class EquivalenciaDaoImpl implements EquivalenciaDao{
     }
     @Override
     public void actualizarEquivalencia(Equivalencia e){
-       //Session session = entityManager.unwrap(Session.class);
-        //session.getSessionFactory().getCurrentSession().update(e);
-        e=find(e.getIdequivalencia());
+       Equivalencia aux=entityManager.getReference(Equivalencia.class, e.getIdequivalencia());
         entityManager.merge(e);
     }
     
@@ -80,7 +78,7 @@ public class EquivalenciaDaoImpl implements EquivalenciaDao{
     @Override
     
     public void modificaContrato(Contrato c){
-        Contrato aux=findContrato(c.getIdContrato());
+        Contrato aux=entityManager.getReference(Contrato.class, c.getIdContrato());
         entityManager.merge(c);
       
     }

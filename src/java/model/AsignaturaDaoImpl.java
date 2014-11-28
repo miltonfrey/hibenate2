@@ -32,8 +32,9 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
     }
     @Override
     public void actualizarAsignatura(Asignatura a){
-      a=find(a.getAsignaturaPK());
+    Asignatura aux=entityManager.getReference(Asignatura.class, a.getAsignaturaPK());
         entityManager.merge(a);
+        
     }
     
     @Override

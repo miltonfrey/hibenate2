@@ -70,7 +70,7 @@ public class UniversidadDaoImpl implements UniversidadDao{
     
     @Override
     public void delete(Universidad u){
-         u=entityManager.find(Universidad.class, u.getNombre());
+         u=entityManager.find(Universidad.class, u.getNombre());// esto tiene que ver con que pais sea fetch eager
         entityManager.remove(entityManager.merge(u));
         
         
@@ -92,8 +92,8 @@ public class UniversidadDaoImpl implements UniversidadDao{
     @Override
     public void actualizar(Universidad u){
         
-        
-        u=findUniversidad(u.getNombre());
+        Universidad aux=entityManager.getReference(Universidad.class, u.getNombre());
+        //u=findUniversidad(u.getNombre());
         entityManager.merge(u);
     }
     

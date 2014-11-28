@@ -2,7 +2,6 @@
 package model;
 
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
@@ -67,7 +66,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
     }
     @Override
     public void actualizar(Usuario u){
-        u=find(u.getLogin());
+        Usuario aux=entityManager.getReference(Usuario.class, u.getLogin());
         entityManager.merge(u);
         
     }

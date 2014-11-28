@@ -37,7 +37,7 @@ public class MovilidadDaoImpl implements MovilidadDao{
     }
     @Override
     public void cambiarMovilidad(Movilidad m){
-      m=findMovilidad(m.getCodMovilidad());
+      Movilidad aux=entityManager.getReference(Movilidad.class, m.getCodMovilidad());
       entityManager.merge(m);
         
     }
