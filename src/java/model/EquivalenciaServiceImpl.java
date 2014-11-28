@@ -302,7 +302,7 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
         for(Equivalencia e:listaAuxEquivalencias){
             
          if(c.getEquivalenciaSet().contains(e)==true){   
-            e=find(e.getIdequivalencia());
+            //e=find(e.getIdequivalencia());
             cNuevo.getEquivalenciaSet().add(e);
             
          

@@ -57,7 +57,7 @@ public class Contrato implements Serializable {
     @JoinTable(name = "contrato_equivalencia", joinColumns = {
         @JoinColumn(name = "idContrato", referencedColumnName = "idContrato")}, inverseJoinColumns = {
         @JoinColumn(name = "idEquivalencia", referencedColumnName = "idequivalencia")})
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private Set<Equivalencia> equivalenciaSet;
     @JoinColumn(name = "idMovilidad", referencedColumnName = "codMovilidad")
     @ManyToOne(fetch = FetchType.LAZY)
