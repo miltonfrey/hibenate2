@@ -296,7 +296,7 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
  
     @Override
      public void crearContratoDesdeAceptado(ArrayList<Equivalencia>listaAuxEquivalencias,Contrato c,Contrato cNuevo) throws ContratoNotFoundException,EquivalenciaException{
-       c=findContrato(c.getIdContrato());
+      // c=findContrato(c.getIdContrato());
         cNuevo.setEquivalenciaSet(new HashSet<Equivalencia>());
         
         for(Equivalencia e:listaAuxEquivalencias){
