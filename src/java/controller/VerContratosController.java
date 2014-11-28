@@ -138,7 +138,7 @@ public class VerContratosController implements Serializable{
         
             try{
             c=equivalenciaService.findContrato(c.getIdContrato());
-            }catch(ContratoNotFoundException ex){
+            }catch(ContratoNotFoundException|RuntimeException ex){
              setListaContratos(equivalenciaService.listaContratos(selectedMovilidad));
               beanUtilidades.creaMensaje("contrato no encontrado", FacesMessage.SEVERITY_ERROR);
              return null;

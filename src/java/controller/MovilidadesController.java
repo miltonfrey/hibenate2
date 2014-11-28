@@ -208,6 +208,10 @@ public class MovilidadesController implements Serializable{
     
         
     public String eliminaMovilidadLista(){
+        if(selectedMovilidades.isEmpty()){
+            return null;
+        }
+        
         
         for(Movilidad m:selectedMovilidades){
             try{

@@ -147,8 +147,9 @@ public class VerMisContratosController implements Serializable{
              selectedContrato.setEquivalenciaSet(null);
            //equivalenciaService.modificaContrato(selectedContrato);
            equivalenciaService.eliminaContrato(selectedContrato);
-           }catch(ContratoNotFoundException ex){
-               
+           }catch(ContratoNotFoundException|RuntimeException ex){
+               cerrarContratos();
+               return null;
            } 
             for(Equivalencia e:listaCopia){
               
