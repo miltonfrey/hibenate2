@@ -19,8 +19,12 @@ public class UsuarioServiceImpl implements UsuarioService{
   
     @Override
     public Usuario find(String nombre)throws UsuarioNotFoundException{
-        
-        Usuario u=usuarioDao.find(nombre);
+        Usuario u;
+        try{
+        u=usuarioDao.find(nombre);
+        }catch(RuntimeException ex){
+            throw new UsuarioNotFoundException();
+        }
         if(u==null){
             throw new UsuarioNotFoundException();
         }

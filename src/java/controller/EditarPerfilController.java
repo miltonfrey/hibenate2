@@ -92,8 +92,12 @@ public class EditarPerfilController implements Serializable{
         }
         
         user.setPassword(usuarioService.md5Password(nuevoPassword));
+        try{
         usuarioService.actualizar(user);
-        
+        }catch(RuntimeException ex){
+            beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
+            return "/principal.xhtml?faces-redirect=true";
+        }
         beanUtilidades.creaMensaje("password modificado correctamente", FacesMessage.SEVERITY_INFO);
         return null;
     }
