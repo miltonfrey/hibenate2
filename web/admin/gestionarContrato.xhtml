@@ -130,11 +130,11 @@
                    
                 </p:columnGroup>
                 
-                <f:facet name="footer">
+                <f:facet name="footer" >
                     <p:commandButton  id="publicaBtn"  update=":formTablaEquivalencias:" icon="ui-icon-search" value="publicar" action="#{equivalenciasController.publicarEquivalenciaSimple}"
-                                              oncomplete="PF('equivalenciaTable').unselectAllRows();"/>
+                                      oncomplete="PF('equivalenciaTable').unselectAllRows();" rendered="#{equivalenciasController.user.tipoUsuario eq 0}" />
                     <p:commandButton   process=":formTablaEquivalencias:" update=":formTablaEquivalencias" icon="ui-icon-search" value="invisible" action="#{equivalenciasController.noPublicarSimple}"
-                                   oncomplete="PF('equivalenciaTable').unselectAllRows();"/>
+                                   oncomplete="PF('equivalenciaTable').unselectAllRows();" rendered="#{equivalenciasController.user.tipoUsuario eq 0}"/>
                     
                 </f:facet>
            
@@ -142,9 +142,9 @@
             
         </h:form>
         <br/>
-        <p:outputPanel rendered="#{equivalenciasController.selectedMovilidad.estado eq 'aceptada'}">
+        <p:outputPanel rendered="#{equivalenciasController.user.tipoUsuario eq 0}">
             <p:outputLabel value="Cambiar estado del contrato"/>
-        <h:form id="aprobarContrato">
+            <h:form id="aprobarContrato" rendered="#{equivalenciasController.user.tipoUsuario eq 0}">
             
             
             <p:selectOneMenu value="#{equivalenciasController.apruebaOrechaza}" required="true"
@@ -157,7 +157,8 @@
             </p:selectOneMenu>
             <br/>
            
-            <p:commandButton value="Confirmar" action="#{equivalenciasController.cambiarEstadoContrato}" update=":formTablaEquivalencias" oncomplete="PF('equivalenciaTable').unselectAllRows();"/>
+            <p:commandButton value="Confirmar" action="#{equivalenciasController.cambiarEstadoContrato}" update=":formTablaEquivalencias"
+                             oncomplete="PF('equivalenciaTable').unselectAllRows();" />
          
              
           
@@ -165,10 +166,10 @@
         </p:outputPanel>   
     
     
-       <br/>
+       
        <br/>
        <h:outputLink value="equivalenciasPublicasAdmin.xhtml">equivalencias públicas</h:outputLink>
-       <br/>
+       <br/><br/>
        <h:outputLink value="verContratos.xhtml"><h:graphicImage value="/resources/iniciar-icono-4628-48.png"/></h:outputLink>
         <br/>
          <h:form>

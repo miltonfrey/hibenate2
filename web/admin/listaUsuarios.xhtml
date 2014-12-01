@@ -64,18 +64,12 @@
                
                          <f:facet name="footer">
                              <p:commandButton onclick="if (! confirm('¿seguro que quieres borrar?')) return false" update=":formTabla:" icon="ui-icon-search" value="Eliminar" action="#{eliminarUsuarioController.eliminaUsuariosLista}" 
-                                 oncomplete="PF('usTable').filter()"/>
+                                              oncomplete="PF('usTable').filter()" rendered="#{autenticarAdminController.user.tipoUsuario eq 0}" />
                          </f:facet>
                 
             </p:dataTable>
           
         </h:form>
-        
-        
-        <br/>
-        
-        <h:outputLink value="crearUsuario.xhtml">Crear usuario</h:outputLink>
-         <!--se puede poner resources sin /-->
         
         <br/><br/>
         <h:outputLink value="index.xhtml"><h:graphicImage value="/resources/iniciar-icono-4628-48.png"/></h:outputLink>

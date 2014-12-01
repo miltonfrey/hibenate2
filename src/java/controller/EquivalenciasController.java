@@ -2,7 +2,6 @@
 package controller;
 
 import exceptions.ContratoNotFoundException;
-import exceptions.EquivalenciaException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -262,6 +261,18 @@ public class EquivalenciasController implements Serializable{
     public void setSelectedEquivalenciasSimples(ArrayList<Equivalencia> selectedEquivalenciasSimples) {
         this.selectedEquivalenciasSimples = selectedEquivalenciasSimples;
     }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+    
+    
+    
+    
     
     
     public String publicarEquivalencia(){

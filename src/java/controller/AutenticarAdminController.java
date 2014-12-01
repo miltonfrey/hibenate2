@@ -12,6 +12,8 @@ import model.UsuarioService;
 import exceptions.PasswordIncorrectoException;
 import pojos.Usuario;
 import exceptions.UsuarioNotFoundException;
+import javax.annotation.PostConstruct;
+import org.hibernate.Session;
 import utils.BeanUtilidades;
 
 
@@ -25,18 +27,25 @@ public class AutenticarAdminController implements Serializable{
     @EJB
     private UsuarioService usuarioService;
    
-   
-    
-    
-    
     private String login;
     private String password;
     
+    private Usuario user;
     
     public AutenticarAdminController() {
     }
     
-
+   @PostConstruct
+    public void init(){
+      
+       HttpSession session=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        if(session.getAttribute("admin")!=null){
+            user=(Usuario)session.getAttribute("admin");
+        }
+        
+    }
+    
+    
 
 public String getLogin() {
         return login;
@@ -53,6 +62,14 @@ public String getLogin() {
     public void setPassword(String password) {
         this.password = password;
     }
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+    
     
     
     
@@ -74,12 +91,17 @@ public String getLogin() {
                beanUtilidades.creaMensaje("password incorrecto", FacesMessage.SEVERITY_ERROR);
                return null;
             }
-            
+                
                 HttpSession session=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
                 session.setAttribute("admin", u);
                 return "admin/index.xhtml?faces-redirect=true";
+                
+                
             
         }
+
+    
+    
             
             
         }

@@ -92,7 +92,7 @@ public class UsuarioServiceImpl implements UsuarioService{
        
        password=md5Password(password);
             String pass=u.getPassword();
-            if((pass.equals(password)==false)||u.getTipoUsuario()!=0){
+            if((pass.equals(password)==false)||u.getTipoUsuario()==1){
                 
                throw new PasswordIncorrectoException();
             }

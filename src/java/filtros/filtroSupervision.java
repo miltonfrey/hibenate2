@@ -15,10 +15,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import pojos.Usuario;
 
 
-@WebFilter(filterName = "filtroAdmin",urlPatterns = {"/admin/*"})
-public class filtroAdmin implements Filter {
+@WebFilter(filterName = "filtroSupervision",urlPatterns = {"/supervision/*"})
+public class filtroSupervision implements Filter {
 
     @Override
     public void init(FilterConfig config) throws ServletException {
@@ -31,16 +32,16 @@ public class filtroAdmin implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
 
-        if ((session == null) ||(session.getAttribute("admin")==null)) {
-             
+        if (session.getAttribute("admin")==null)
+           response.sendRedirect(request.getContextPath() + "/zonaRestringida.xhtml");  
             
-            response.sendRedirect(request.getContextPath() + "/zonaRestringida.xhtml");
+        else if(session.getAttribute("admin")!=null){
             
-        } 
-            
-                
-                
-        else{
+            Usuario u=(Usuario)session.getAttribute("admin");
+            if(u.getTipoUsuario()==2){
+               response.sendRedirect(request.getContextPath() + "/admin/index.xhtml"); 
+            }
+             else{
             
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
             response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
@@ -52,6 +53,13 @@ public class filtroAdmin implements Filter {
              chain.doFilter(req, res);
              
         }
+        }    
+            
+        
+            
+                
+                
+       
 
     }
 

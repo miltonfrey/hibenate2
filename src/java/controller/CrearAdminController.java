@@ -78,8 +78,9 @@ public class CrearAdminController implements Serializable{
         }
         
         
-        Short s=0;
-        Usuario u=new Usuario(login,password,s,"admin","admin","admin");
+        Short s=2;
+       
+        Usuario u=new Usuario(login,password,s,"tutor","tutor","tutor");
         try{
         usuarioService.insertarUsuario(u);
     }catch(Exception ex){

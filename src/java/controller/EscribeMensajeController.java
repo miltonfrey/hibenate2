@@ -1,6 +1,7 @@
 
 package controller;
 
+import exceptions.UsuarioNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,6 +14,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import model.MensajeService;
+import model.UsuarioService;
 import pojos.Mensaje;
 import pojos.Usuario;
 
@@ -28,6 +30,10 @@ public class EscribeMensajeController implements Serializable{
     
     @EJB
     private MensajeService mensajeService;
+    
+    @EJB 
+    private UsuarioService usuarioService;
+    
     
     public EscribeMensajeController() {
     }
@@ -109,6 +115,14 @@ public class EscribeMensajeController implements Serializable{
    
     
      public String enviarMensajesVarios(){
+         
+         Usuario aux=null;
+         try{
+         
+         aux=usuarioService.find("admin");
+         }catch(UsuarioNotFoundException ex){
+             
+         }
     if(selectedUsuarios.isEmpty()){
         return null;
     }
@@ -120,7 +134,7 @@ public class EscribeMensajeController implements Serializable{
         mensaje.setEliminadoOrigen("no");
         mensaje.setFecha(Calendar.getInstance().getTime());
         mensaje.setLeidoDestino("no");
-        mensaje.setOrigen(user);
+        mensaje.setOrigen(aux);
         mensaje.setTema(tema);
         mensaje.setTexto(texto);
         try{
