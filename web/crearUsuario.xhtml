@@ -32,22 +32,13 @@
                 <p:inputText id="ii1" value="#{crearUsuarioController.apellido2}"/>
                              
                
-                <p:outputLabel value="Login"/>
+                <p:outputLabel value="Login de la UDC"/>
                 <p:inputText value="#{crearUsuarioController.login}"
                              required="true"
                              requiredMessage="el campo login está vacío"
                              autocomplete="off"/>
                 
-                <p:outputLabel value="Contraseña"/>
-                <p:password id="hidden1" value="#{crearUsuarioController.password}"
-                required="true"
-                requiredMessage="password no puede estar vacio"
-                autocomplete="off"/>
                 
-                <p:outputLabel value="repite contraseña"/>
-                <p:password value="#{crearUsuarioController.passwordAux}"
-                            required="true"
-                            requiredMessage="el campo password está vacío"/>
               
                 <p:outputLabel value="titulacion"/>
                 <p:selectOneMenu id="select1" value="#{crearUsuarioController.titulacion}" 
@@ -65,25 +56,7 @@
                 
                 
             </h:form>
-            
-        
-       <br/>
-        <h:outputLink value="#{request.contextPath}/admin/listaUsuarios.xhtml">Lista de usuarios</h:outputLink>
-        <br/><br/>
-        
-        
-        
-        
-       <h:outputLink value="/hibenate2/admin/index.xhtml"><h:graphicImage value="/resources/iniciar-icono-4628-48.png"/></h:outputLink>  <!--tb vale img src-->
-        
-       
-       <br/>
-       
-             <h:form>
-                 <p:commandButton value="cerrar sesión" action="#{beanUtilidades.salir}" ajax="false"/>
-            </h:form>
-        
-       
+          
     </h:body>
 </html>
 

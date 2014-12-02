@@ -129,15 +129,11 @@ public class CrearUsuarioController implements Serializable{
     
     public String creaUsuario(){
         
-        if(getPassword().equals(getPasswordAux())==false){
-            
-            beanUtilidades.creaMensaje("los password no coinciden", FacesMessage.SEVERITY_ERROR);
-            return null;
-        }
-        
         Usuario u=new Usuario();
         u.setLogin(login);
-        u.setPassword(password);
+        password=usuarioService.generarPassword();
+        password=password.substring(0, 8);
+        u.setPassword(usuarioService.md5Password(password));
         short s=1;
         u.setTipoUsuario(s);
         u.setNombre(nombre);
@@ -145,25 +141,29 @@ public class CrearUsuarioController implements Serializable{
         u.setApellido2(apellido2);
         u.setTitulacion(titulacion);
         
+        
+         
+        
+        
         try{
         usuarioService.insertarUsuario(u);
         }catch(RuntimeException ex){
             beanUtilidades.creaMensaje("ya existe ese login", FacesMessage.SEVERITY_ERROR);
             return null;
             
-            
                 }
-        try{
+       try{
             
-            usuarioService.enviarEmail(login);
+            usuarioService.enviarEmail(login,password);
             
         }catch(EmailException ex){
+            ex.printStackTrace();
             beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
             return null;
         }
         
         
-        beanUtilidades.creaMensaje("usuario creado y mensaje enviado", FacesMessage.SEVERITY_INFO);
+        beanUtilidades.creaMensaje("usuario creado y se ha enviado un correo a la cuenta "+login+"@udc.es con la contraseña", FacesMessage.SEVERITY_INFO);
         
         login="";
         nombre="";

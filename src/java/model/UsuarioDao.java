@@ -12,7 +12,7 @@ public interface UsuarioDao {
     public List<Usuario> listar();
     public void insertarUsuario(Usuario u);
     public void actualizar(Usuario u);
-    public String md5Password(String password);
+   
     
         
         

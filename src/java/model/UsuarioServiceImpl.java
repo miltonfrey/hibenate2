@@ -10,7 +10,7 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
-
+import java.util.UUID;
 import pojos.Usuario;
 
 
@@ -71,12 +71,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         
         
     }
-    @Override
-    public String md5Password(String password){
-        
-       return usuarioDao.md5Password(password);
-    }
-
+    
     
     @Override
     public void autenticarUsuario(String password,Usuario u)throws PasswordIncorrectoException{
@@ -102,16 +97,51 @@ public class UsuarioServiceImpl implements UsuarioService{
             }
        
    }
+   
    @Override
-    public void enviarEmail(String destino) throws EmailException{
+   public String generarPassword(){
+       
+       return UUID.randomUUID().toString();
+       
+       
+   }
+   
+   
+   @Override
+    public String md5Password(String password){
+        
+        
+        try {
+        java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+        byte[] array = md.digest(password.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < array.length; ++i) {
+          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+       }
+        return sb.toString();
+    } catch (java.security.NoSuchAlgorithmException e) {
+    }
+    return null;
+        
+        
+        
+    }
+   
+   @Override
+    public void enviarEmail(String login,String password) throws EmailException{
+        
+    
+       
+        String mensaje="La contraseña es "+password+". Puedes cambiarla en la aplicación";
         Email email = new SimpleEmail();
         email.setHostName("smtp.googlemail.com");
         email.setSmtpPort(465);
-        email.setAuthenticator(new DefaultAuthenticator("pedro.olartev@gmail.com", "escoladel"));
+        
+        email.setAuthenticator(new DefaultAuthenticator("registroerasmus@gmail.com", "registrousers"));
         email.setSSLOnConnect(true);
-        email.setFrom("pedrov.olarte@gmail.com");
-        email.setSubject("TestMail");
-        email.setMsg("This is a test mail ... :-)");
+        email.setFrom("registro.erasmus@gmail.com");
+        email.setSubject("Usuario creado");
+        email.setMsg(mensaje);
         email.addTo("pedro.olarte@udc.es");
         //email.setTLS(true);
         email.send();
