@@ -6,6 +6,10 @@ import exceptions.UsuarioNotFoundException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 
 import pojos.Usuario;
 
@@ -98,6 +102,21 @@ public class UsuarioServiceImpl implements UsuarioService{
             }
        
    }
-    
+   @Override
+    public void enviarEmail(String destino) throws EmailException{
+        Email email = new SimpleEmail();
+        email.setHostName("smtp.googlemail.com");
+        email.setSmtpPort(465);
+        email.setAuthenticator(new DefaultAuthenticator("pedro.olartev@gmail.com", "escoladel"));
+        email.setSSLOnConnect(true);
+        email.setFrom("pedrov.olarte@gmail.com");
+        email.setSubject("TestMail");
+        email.setMsg("This is a test mail ... :-)");
+        email.addTo("pedro.olarte@udc.es");
+        //email.setTLS(true);
+        email.send();
+        
+        
+    }
     
 }

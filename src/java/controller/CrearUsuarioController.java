@@ -11,6 +11,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 import model.UsuarioService;
+import org.apache.commons.mail.EmailException;
 import pojos.Usuario;
 
 import utils.BeanUtilidades;
@@ -152,8 +153,17 @@ public class CrearUsuarioController implements Serializable{
             
             
                 }
+        try{
+            
+            usuarioService.enviarEmail(login);
+            
+        }catch(EmailException ex){
+            beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
+            return null;
+        }
         
-        beanUtilidades.creaMensaje("usuario creado", FacesMessage.SEVERITY_INFO);
+        
+        beanUtilidades.creaMensaje("usuario creado y mensaje enviado", FacesMessage.SEVERITY_INFO);
         
         login="";
         nombre="";
