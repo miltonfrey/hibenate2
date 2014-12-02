@@ -132,9 +132,10 @@ public class UsuarioServiceImpl implements UsuarioService{
         
     
        
-        String mensaje="La contraseña es "+password+". Puedes cambiarla en la aplicación";
+        String mensaje="La contraseña es "+password+"\n Puedes cambiarla en la aplicación";
         Email email = new SimpleEmail();
         email.setHostName("smtp.googlemail.com");
+        //email.setHostName("smtp.gmail.com");
         email.setSmtpPort(465);
         
         email.setAuthenticator(new DefaultAuthenticator("registroerasmus@gmail.com", "registrousers"));
