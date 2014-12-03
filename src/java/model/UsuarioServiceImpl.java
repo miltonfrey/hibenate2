@@ -143,7 +143,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         email.setFrom("registro.erasmus@gmail.com");
         email.setSubject("Usuario creado");
         email.setMsg(mensaje);
-        email.addTo("pedro.olarte@udc.es");
+        email.addTo(login+"@udc.es");
         //email.setTLS(true);
         email.send();
         
