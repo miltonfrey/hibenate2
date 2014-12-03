@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
       
     <h:head>
@@ -52,10 +51,18 @@
                 <p:commandButton value="crear usuario" action="#{crearUsuarioController.creaUsuario}" update=":form1:" />
                 
                 </h:panelGrid>
-                
-                
-                
+               
             </h:form>
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+                   <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                       <p:graphicImage value="/resources/ajax-loader.gif" />
+                   </p:dialog>
+        <br/><br/>
+        <h:outputLink value="principal.xhtml"><h:graphicImage value="/resources/iniciar-icono-4628-48.png"/></h:outputLink>
+        
+        
           
     </h:body>
 </html>

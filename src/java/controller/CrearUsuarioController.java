@@ -1,17 +1,21 @@
 
 package controller;
 
+import exceptions.UsuarioNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import model.MensajeService;
 
 import model.UsuarioService;
 import org.apache.commons.mail.EmailException;
+import pojos.Mensaje;
 import pojos.Usuario;
 
 import utils.BeanUtilidades;
@@ -24,6 +28,10 @@ public class CrearUsuarioController implements Serializable{
     
     @EJB
     private UsuarioService usuarioService;
+    
+    @EJB
+    private MensajeService mensajeService;
+    
     
     @Inject
     private BeanUtilidades beanUtilidades;
@@ -163,7 +171,32 @@ public class CrearUsuarioController implements Serializable{
         }
         
         
-        beanUtilidades.creaMensaje("usuario creado y se ha enviado un correo a la cuenta "+login+"@udc.es con la contraseña", FacesMessage.SEVERITY_INFO);
+        beanUtilidades.creaMensaje("usuario creado. Se ha enviado un correo a la cuenta "+login+"@udc.es con la contraseña", FacesMessage.SEVERITY_INFO);
+        
+        
+        Usuario destino=null;
+        try{
+            
+            destino=usuarioService.find("admin");
+            
+        
+            
+        
+        Mensaje m=new Mensaje();
+        m.setDestino(destino);
+        m.setEliminadoDestino("no");
+        m.setEliminadoOrigen("si");
+        m.setFecha(Calendar.getInstance().getTime());
+        m.setLeidoDestino("no");
+        m.setOrigen(new Usuario(login, password, s, titulacion, nombre, apellido1));
+        m.setTema("usuario creado");
+        m.setTexto("el usuario "+login+" se ha dado de alta en el sistema");
+        mensajeService.enviarMensaje(m);
+        }catch(UsuarioNotFoundException|RuntimeException ex){
+            
+            beanUtilidades.creaMensaje("se ha producido un error. Inténtalo más tarde", FacesMessage.SEVERITY_ERROR);
+                return null;
+        }
         
         login="";
         nombre="";
