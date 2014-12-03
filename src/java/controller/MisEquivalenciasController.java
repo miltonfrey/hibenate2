@@ -450,11 +450,12 @@ public class MisEquivalenciasController implements Serializable{
      m.setLeidoDestino("no");
      m.setOrigen(user);
      m.setTema("contrato modificado");
-     m.setTexto("el usuario "+user.getLogin()+" ha modificado un contrato");
+     m.setTexto("el usuario "+user.getLogin()+" ha creado un contrato");
      mensajeService.enviarMensaje(m);
-        mensajeService.enviarMensaje(m);
+       
         }catch(UsuarioNotFoundException ex){
             beanUtilidades.creaMensaje("Usuario inexistente", FacesMessage.SEVERITY_ERROR);
+            return null;
         }
         verConfirmar=false;
         
@@ -498,10 +499,10 @@ public class MisEquivalenciasController implements Serializable{
      m.setFecha(Calendar.getInstance().getTime());
      m.setLeidoDestino("no");
      m.setOrigen(user);
-     m.setTema("contrato creado");
+     m.setTema("contrato modificado");
      m.setTexto("el usuario "+user.getLogin()+" ha modificado un contrato");
      mensajeService.enviarMensaje(m);
-     mensajeService.enviarMensaje(m);
+    
      }catch(Exception ex){
          
      }
@@ -550,7 +551,7 @@ public class MisEquivalenciasController implements Serializable{
      m.setLeidoDestino("no");
      m.setOrigen(user);
      m.setTema("contrato creado");
-     m.setTexto("el usuario "+user.getLogin()+" ha modificado un contrato");
+     m.setTexto("el usuario "+user.getLogin()+" ha creado un contrato");
      mensajeService.enviarMensaje(m);
      }catch(UsuarioNotFoundException ex){
          

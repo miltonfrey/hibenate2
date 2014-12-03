@@ -220,14 +220,11 @@ public String crearMovilidad(){
                   
              
               
-              }catch(DuracionException ex){
+              }catch(DuracionException|NumeroDeMovilidadesException ex){
                   beanUtilidades.creaMensaje(ex.getMessage(),FacesMessage.SEVERITY_ERROR);
                   return null;
               }
-              catch(NumeroDeMovilidadesException ex){
-                  beanUtilidades.creaMensaje(ex.getMessage(), FacesMessage.SEVERITY_ERROR);
-                  return null;
-              }
+              
               
                catch(RuntimeException ex){
                  beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
@@ -251,14 +248,14 @@ public String crearMovilidad(){
                 mensaje.setFecha(Calendar.getInstance().getTime());
                 mensaje.setLeidoDestino("no");
                 mensaje.setTema("movilidad creada");
-                mensaje.setTexto("el usuario "+usuario.getNombre()+" "+usuario.getApellido1()+""
+                mensaje.setTexto("el usuario "+usuario.getLogin()+""
                         + " ha creado una movilidad a "+selectedUniversidad+" entre el "+sdf.format(fechaInicio)+" y "+sdf.format(fechaFin));
                 
                     mensajeService.enviarMensaje(mensaje);
                 
                 
                 beanUtilidades.creaMensaje("movilidad creada", FacesMessage.SEVERITY_INFO);
-                beanUtilidades.creaMensaje(usuario.getLogin()+" a "+ selectedUniversidad+" "+selectedPais+" "+" " + " de "+sdf.format(fechaInicio)+" a "+ sdf.format(fechaFin), FacesMessage.SEVERITY_INFO);
+                //beanUtilidades.creaMensaje(usuario.getLogin()+" a "+ selectedUniversidad+" "+selectedPais+" "+" " + " de "+sdf.format(fechaInicio)+" a "+ sdf.format(fechaFin), FacesMessage.SEVERITY_INFO);
                 selectedUniversidad="";
                 selectedPais="";
                 selectedUniversidad="";
